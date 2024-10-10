@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}New Note{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">{% if note.pk %}Edit{% else %}Create{% endif %} Note</h1>
+        <div class="card bg-light border-success"> 
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            {% if note.pk %}Update{% else %}Create{% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
